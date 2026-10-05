@@ -30,5 +30,8 @@ export function totalGasto(despesas: Despesa[]): number
 
 export function maiorDespesa(despesas: Despesa[]): Despesa | undefined
 {
-    throw new Error("não implementado.");
+    return despesas.reduce<Despesa | undefined>(
+        (maior, despesa) => !maior || despesa.valor > maior.valor ? despesa : maior,
+        undefined
+    );
 }
