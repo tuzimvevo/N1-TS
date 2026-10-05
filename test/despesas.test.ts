@@ -45,3 +45,16 @@ describe("despesasDaCategoria", () => {
     ]);
   });
 });
+
+describe("totalGasto", () => {
+  it("retorna a soma dos valores das despesas", () => {
+    expect(totalGasto([
+      { id: 1, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 },
+      { id: 1, descricao: "Lanche", valor: 30, categoria: "alimentação", mesAno: 3 },
+      { id: 2, descricao: "Filme", valor: 50, categoria: "lazer", mesAno: 4 }
+    ])).toBe(100);
+  });
+  it("retorna 0 se a lista estiver vazia", () => {
+    expect(totalGasto([])).toBe(0);
+  });
+});
