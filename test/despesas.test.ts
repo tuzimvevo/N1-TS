@@ -24,11 +24,11 @@ describe("removerDespesa", () => {
     ]);
   });
   it("se o id não existir, retorna cópia original", () => {
-    expect(removerDespesa([{ id: 1, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 }], 2)).toEqual([
-      { id: 1, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 }
+    expect(removerDespesa([{ id: 3, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 }], 2)).toEqual([
+      { id: 3, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 }
     ]);
-    expect(removerDespesa([{ id: 1, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 }, { id: 2, descricao: "Filme", valor: 50, categoria: "lazer", mesAno: 4 }], 2)).toEqual([
-      { id: 1, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 }
+    expect(removerDespesa([{ id: 3, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 }, { id: 2, descricao: "Filme", valor: 50, categoria: "lazer", mesAno: 4 }], 2)).toEqual([
+      { id: 3, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 }
     ]);
   })
 });
@@ -36,11 +36,11 @@ describe("removerDespesa", () => {
 describe("despesasDaCategoria", () => {
   it("retorna somente despesas da categoria especificada", () => {
     expect(despesasDaCategoria([
-      { id: 1, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 },
+      { id: 3, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 },
       { id: 1, descricao: "Lanche", valor: 30, categoria: "alimentação", mesAno: 3 },
       { id: 2, descricao: "Filme", valor: 50, categoria: "lazer", mesAno: 4 }
     ], "alimentação")).toEqual([
-      { id: 1, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 },
+      { id: 3, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 },
       { id: 1, descricao: "Lanche", valor: 30, categoria: "alimentação", mesAno: 3 }
     ]);
   });
@@ -49,12 +49,25 @@ describe("despesasDaCategoria", () => {
 describe("totalGasto", () => {
   it("retorna a soma dos valores das despesas", () => {
     expect(totalGasto([
-      { id: 1, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 },
+      { id: 3, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 },
       { id: 1, descricao: "Lanche", valor: 30, categoria: "alimentação", mesAno: 3 },
       { id: 2, descricao: "Filme", valor: 50, categoria: "lazer", mesAno: 4 }
     ])).toBe(100);
   });
   it("retorna 0 se a lista estiver vazia", () => {
     expect(totalGasto([])).toBe(0);
+  });
+});
+
+describe("maiorDespesa", () => {
+  it("retorna a despesa com o maior valor", () => {
+    expect(maiorDespesa([
+      { id: 3, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 },
+      { id: 1, descricao: "Lanche", valor: 30, categoria: "alimentação", mesAno: 3 },
+      { id: 2, descricao: "Filme", valor: 50, categoria: "lazer", mesAno: 4 }
+    ])).toEqual({ id: 2, descricao: "Filme", valor: 50, categoria: "lazer", mesAno: 4 });
+  });
+  it("retorna undefined se a lista estiver vazia", () => {
+    expect(maiorDespesa([])).toBeUndefined();
   });
 });
