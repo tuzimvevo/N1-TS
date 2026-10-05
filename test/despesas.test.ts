@@ -9,6 +9,13 @@ describe("adicionarDespesa", () => {
       { id: 2, descricao: "Filme", valor: 50, categoria: "lazer", mesAno: 4 }
     ]);
   });
+  it("não altera o array original", () => {
+    const despesas: Despesa[] = [{ id: 1, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 }];
+    const resultado = adicionarDespesa(despesas, {id: 2, descricao: "Filme", valor: 50, categoria: "lazer", mesAno: 4});
+    expect(despesas).toEqual([
+      { id: 1, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 }]);
+    expect(resultado).not.toBe(despesas);
+  });
   it("lança erro se valor for negativo", () => {
     expect(() => adicionarDespesa([], { id: 4, descricao: "Festa", valor: -20, categoria: "lazer", mesAno: 2 })).toThrow("Erro: O valor da despesa não pode ser negativo.");
   });

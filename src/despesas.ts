@@ -10,7 +10,7 @@ export function adicionarDespesa(despesas: Despesa[], nova: Despesa): Despesa[]
         throw new Error("Erro: Mês da despesa deve ser um valor entre 1 e 12.");
     }
 
-    return [...despesas, nova];
+    return [...despesas, nova]; //não altera o array original por utilizar uma cópia de despesas (...despesas).
 }
 
 export function removerDespesa(despesas: Despesa[], id: number): Despesa[]
