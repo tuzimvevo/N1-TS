@@ -32,3 +32,16 @@ describe("removerDespesa", () => {
     ]);
   })
 });
+
+describe("despesasDaCategoria", () => {
+  it("retorna somente despesas da categoria especificada", () => {
+    expect(despesasDaCategoria([
+      { id: 1, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 },
+      { id: 1, descricao: "Lanche", valor: 30, categoria: "alimentação", mesAno: 3 },
+      { id: 2, descricao: "Filme", valor: 50, categoria: "lazer", mesAno: 4 }
+    ], "alimentação")).toEqual([
+      { id: 1, descricao: "Almoço", valor: 20, categoria: "alimentação", mesAno: 2 },
+      { id: 1, descricao: "Lanche", valor: 30, categoria: "alimentação", mesAno: 3 }
+    ]);
+  });
+});
