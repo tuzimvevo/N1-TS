@@ -20,8 +20,8 @@ export function removerDespesa(despesas: Despesa[], id: number): Despesa[]
 
 export function despesasDaCategoria(despesas: Despesa[], categoria: string): Despesa[]
 {
-    throw new Error("não implementado.");
-}
+    return despesas.filter(despesa => despesa.categoria === categoria);
+}  
 
 export function totalGasto(despesas: Despesa[]): number
 {
